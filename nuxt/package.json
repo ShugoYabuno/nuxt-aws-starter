@@ -2,9 +2,10 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "HOST=0.0.0.0 PORT=3000 nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "start": "HOST=0.0.0.0 PORT=3000 nuxt start"
   },
   "devDependencies": {
     "nuxt": "3.0.0-rc.3"
