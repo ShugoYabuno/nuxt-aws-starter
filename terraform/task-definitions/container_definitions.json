@@ -1,0 +1,22 @@
+[
+  {
+    "name": "nuxt_aws_starter",
+    "image": "722081103407.dkr.ecr.ap-northeast-1.amazonaws.com/nuxt-aws-starter",
+    "portMappings": [
+      {
+        "containerPort": 3000,
+        "hostPort": 3000,
+        "protocol": "tcp"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/nuxt_aws_starter",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    },
+    "essential": true
+  }
+]
