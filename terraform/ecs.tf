@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "task_definition" {
         {
           "containerPort" : 3000,
           "hostPort" : 3000,
-          "protocol" : "TCP"
+          "protocol" : "tcp"
         }
       ],
       "logConfiguration" : {
