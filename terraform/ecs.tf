@@ -8,12 +8,12 @@ resource "aws_ecs_task_definition" "task_definition" {
   [
     {
       "name" : "${var.project_name}",
-      "image" : "${var.aws_account_id}.dkr.ecr.ap-northeast-1.amazonaws.com/${var.project_name}",
+      "image" : "${aws_ecr_repository.ecr_repository.repository_url}",
       "portMappings" : [
         {
           "containerPort" : 3000,
           "hostPort" : 3000,
-          "protocol" : "tcp"
+          "protocol" : "TCP"
         }
       ],
       "logConfiguration" : {
@@ -62,10 +62,20 @@ resource "aws_ecs_service" "ecs_service" {
   network_configuration {
     assign_public_ip = "true"
     security_groups  = [aws_security_group.security_group.id]
-    subnets          = [aws_subnet.subnet.id]
+    subnets          = [aws_subnet.main.id]
   }
 
   deployment_controller {
     type = "ECS"
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.lb_target_group.arn
+    container_name   = var.project_name
+    container_port   = 3000
+  }
+
+  tags = {
+    Name = var.project_name
   }
 }
