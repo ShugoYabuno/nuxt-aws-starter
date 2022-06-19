@@ -96,6 +96,13 @@ data "aws_iam_policy_document" "codebuild" {
       "${aws_s3_bucket.pipeline_artifact.arn}/*"
     ]
   }
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecr:GetAuthorizationToken",
+    ]
+    resources = ["*"]
+  }
 }
 
 resource "aws_kms_key" "a" {}
