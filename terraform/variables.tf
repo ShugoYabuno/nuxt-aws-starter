@@ -1,10 +1,10 @@
-variable "aws_account_id" {
-  default = "722081103407"
-}
+variable "aws_account_id" {}
 
-variable "project_name" {
-  default = "nuxt-aws-starter"
-}
+variable "project_name" {}
+
+variable "aws_access_key" {}
+
+variable "aws_secret_key" {}
 
 variable "aws_region" {
   default = "ap-northeast-1"
