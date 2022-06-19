@@ -13,8 +13,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - echo $URI
-      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker build -t $URI:$CODEBUILD_RESOLVED_SOURCE_VERSION ./nuxt
   post_build:
     commands:
