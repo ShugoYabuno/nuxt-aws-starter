@@ -9,7 +9,7 @@ resource "aws_iam_role" "codebuild" {
 }
 
 resource "aws_iam_policy" "codepipeline" {
-  name = "${var.project_name}-codepipeline-policy"
+  name   = "${var.project_name}-codepipeline-policy"
   policy = data.aws_iam_policy_document.codepipeline.json
 }
 
@@ -28,12 +28,6 @@ resource "aws_iam_policy" "codestar" {
       },
     ]
   })
-}
-
-resource "aws_iam_role_policy" "codebuild" {
-  name   = "${var.project_name}-codebuild"
-  role   = aws_iam_role.codebuild.id
-  policy = data.aws_iam_policy_document.codebuild.json
 }
 
 resource "aws_iam_role_policy_attachment" "codepipeline" {
