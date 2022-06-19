@@ -13,32 +13,32 @@ resource "aws_iam_policy" "codepipeline" {
   policy = data.aws_iam_policy_document.codepipeline.json
 }
 
-resource "aws_iam_policy" "codestar" {
-  name = "${var.project_name}-codestar"
+# resource "aws_iam_policy" "codestar" {
+#   name = "${var.project_name}-codestar"
 
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Action = [
-          "codestar-connections:UseConnection",
-        ]
-        Effect   = "Allow"
-        Resource = aws_codestarconnections_connection.codestarconnections_connection.arn
-      },
-    ]
-  })
-}
+#   policy = jsonencode({
+#     Version = "2012-10-17",
+#     Statement = [
+#       {
+#         Action = [
+#           "codestar-connections:UseConnection",
+#         ]
+#         Effect   = "Allow"
+#         Resource = aws_codestarconnections_connection.codestarconnections_connection.arn
+#       },
+#     ]
+#   })
+# }
 
 resource "aws_iam_role_policy_attachment" "codepipeline" {
   role       = aws_iam_role.codepipeline.id
   policy_arn = aws_iam_policy.codepipeline.arn
 }
 
-resource "aws_iam_role_policy_attachment" "codestar" {
-  role       = aws_iam_role.codepipeline.id
-  policy_arn = aws_iam_policy.codestar.arn
-}
+# resource "aws_iam_role_policy_attachment" "codestar" {
+#   role       = aws_iam_role.codepipeline.id
+#   policy_arn = aws_iam_policy.codestar.arn
+# }
 
 data "aws_iam_policy_document" "codepipeline_assumerole" {
   statement {
@@ -72,6 +72,13 @@ data "aws_iam_policy_document" "codepipeline" {
       aws_s3_bucket.pipeline_artifact.arn,
       "${aws_s3_bucket.pipeline_artifact.arn}/*"
     ]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "codestar-connections:UseConnection",
+    ]
+    resources = [aws_codestarconnections_connection.codestarconnections_connection.arn]
   }
 }
 
