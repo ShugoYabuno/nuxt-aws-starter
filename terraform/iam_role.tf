@@ -10,9 +10,7 @@ resource "aws_iam_role" "codebuild" {
 
 resource "aws_iam_policy" "codepipeline" {
   name = "${var.project_name}-codepipeline-policy"
-  policy = templatefile("${path.root}/assets/codepipeline_policy.tpl", {
-    artifacts = aws_s3_bucket.pipeline_artifact.id
-  })
+  policy = data.aws_iam_policy_document.codepipeline.json
 }
 
 resource "aws_iam_policy" "codestar" {
