@@ -13,11 +13,12 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $URI:latest ./nuxt
+      - docker build -t $PROJECT_NAME ./nuxt
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
+      - docker tag $PROJECT_NAME:latest $URI:latest
       - docker push $URI:latest
       - printf '{"Version":"1.0","ImageURI":"%s"}' $URI:latest > imageDetail.json
 artifacts:
