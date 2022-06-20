@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   [
     {
       "name" : "${var.project_name}",
-      "image" : "722081103407.dkr.ecr.ap-northeast-1.amazonaws.com/nuxt-aws-starter:def89bd6e9b049930556469663e7ad978c4f3499",
+      "image" : "${aws_ecr_repository.ecr_repository.repository_url}",
       "portMappings" : [
         {
           "containerPort" : 3000,
