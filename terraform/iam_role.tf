@@ -8,6 +8,11 @@ resource "aws_iam_role" "codebuild" {
   assume_role_policy = data.aws_iam_policy_document.codebuild_assumerole.json
 }
 
+resource "aws_iam_role" "codedeploy" {
+  name               = "ecs-pipeline-deploy"
+  assume_role_policy = data.aws_iam_policy_document.codedeploy_assumerole.json
+}
+
 resource "aws_iam_policy" "codepipeline" {
   name   = "${var.project_name}-codepipeline-policy"
   policy = data.aws_iam_policy_document.codepipeline.json
@@ -24,6 +29,11 @@ resource "aws_iam_role_policy_attachment" "codepipeline" {
 resource "aws_iam_role_policy_attachment" "codebuild" {
   role       = aws_iam_role.codebuild.id
   policy_arn = aws_iam_policy.codebuild.arn
+}
+
+resource "aws_iam_role_policy_attachment" "codedeploy" {
+  role       = aws_iam_role.codedeploy.id
+  policy_arn = "arn:aws:iam::aws:policy/AWSCodeDeployRoleForECS"
 }
 
 data "aws_iam_policy_document" "codepipeline_assumerole" {
@@ -102,6 +112,16 @@ data "aws_iam_policy_document" "codebuild" {
       "ecr:*",
     ]
     resources = ["*"]
+  }
+}
+
+data "aws_iam_policy_document" "codedeploy_assumerole" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["codedeploy.amazonaws.com"]
+    }
   }
 }
 

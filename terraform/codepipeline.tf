@@ -41,6 +41,29 @@ resource "aws_codepipeline" "main" {
       }
     }
   }
+
+  stage {
+    name = "Deploy"
+    action {
+      name            = "Deploy"
+      category        = "Deploy"
+      owner           = "AWS"
+      provider        = "CodeDeployToECS"
+      version         = "1"
+      run_order       = 3
+      input_artifacts = ["build", "source"]
+      configuration = {
+        ApplicationName                = aws_codedeploy_app.main.name
+        DeploymentGroupName            = aws_codedeploy_app.main.name
+        TaskDefinitionTemplateArtifact = "source"
+        TaskDefinitionTemplatePath     = "task_definition.json"
+        AppSpecTemplateArtifact        = "source"
+        AppSpecTemplatePath            = "appspec.yml"
+        Image1ArtifactName             = "build"
+        Image1ContainerName            = "IMAGE1_NAME"
+      }
+    }
+  }
 }
 
 resource "aws_codestarconnections_connection" "codestarconnections_connection" {
