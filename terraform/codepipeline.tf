@@ -51,12 +51,12 @@ resource "aws_codepipeline" "main" {
       provider        = "CodeDeployToECS"
       version         = "1"
       run_order       = 3
-      input_artifacts = ["build", "source"]
+      input_artifacts = ["build"]
       configuration = {
         ApplicationName                = aws_codedeploy_app.main.name
         DeploymentGroupName            = aws_codedeploy_app.main.name
         TaskDefinitionTemplateArtifact = "build"
-        AppSpecTemplateArtifact        = "source"
+        AppSpecTemplateArtifact        = "build"
         AppSpecTemplatePath            = "appspec.yml"
         Image1ArtifactName             = "build"
         Image1ContainerName            = "IMAGE1_NAME"
