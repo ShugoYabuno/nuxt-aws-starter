@@ -124,10 +124,3 @@ data "aws_iam_policy_document" "codedeploy_assumerole" {
     }
   }
 }
-
-resource "aws_kms_key" "a" {}
-
-resource "aws_kms_alias" "s3kmskey" {
-  name          = "alias/${var.project_name}-key"
-  target_key_id = aws_kms_key.a.key_id
-}
