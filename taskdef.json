@@ -1,7 +1,7 @@
 {
-  "family": "<TASK_FAMILY>",
+  "family": "nuxt-aws-starter",
   "networkMode": "awsvpc",
-  "executionRoleArn": "<EXECUTION_ROLE_ARN>",
+  "executionRoleArn": "arn:aws:iam::722081103407:role/ecsTaskExecutionRole",
   "cpu": "256",
   "memory": "512",
   "requiresCompatibilities": ["FARGATE"],
