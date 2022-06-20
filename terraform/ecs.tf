@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   [
     {
       "name" : "${var.project_name}",
-      "image" : "${aws_ecr_repository.ecr_repository.repository_url}",
+      "image" : "722081103407.dkr.ecr.ap-northeast-1.amazonaws.com/nuxt-aws-starter:def89bd6e9b049930556469663e7ad978c4f3499",
       "portMappings" : [
         {
           "containerPort" : 3000,
@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "task_definition" {
       "logConfiguration" : {
         "logDriver" : "awslogs",
         "options" : {
-          "awslogs-group" : "/ecs/${var.project_name}",
+          "awslogs-group" : "${aws_cloudwatch_log_group.ecs.name}",
           "awslogs-region" : "ap-northeast-1",
           "awslogs-stream-prefix" : "ecs"
         }
@@ -84,7 +84,7 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.lb_target_group.arn
+    target_group_arn = aws_lb_target_group.green.arn
     container_name   = var.project_name
     container_port   = 3000
   }
