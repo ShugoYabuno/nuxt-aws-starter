@@ -25,7 +25,9 @@ phases:
       - sed -i -e "s#<CONTAINER_NAME>#${CONTAINER_NAME}#" taskdef.json
       - sed -i -e "s#<LOGGROUP_NAME>#${LOGGROUP_NAME}#" taskdef.json
       - sed -i -e "s#<TASK_FAMILY>#${TASK_FAMILY}#" taskdef.json
+      - sed -i -e "s#<CONTAINER_NAME>#${CONTAINER_NAME}#" appspec.yml
 artifacts:
   files:
     - imageDetail.json
     - taskdef.json
+    - appspec.yml
