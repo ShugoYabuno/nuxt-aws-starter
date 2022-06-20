@@ -75,7 +75,6 @@ resource "aws_ecs_service" "ecs_service" {
   enable_ecs_managed_tags = true
   enable_execute_command  = false
   wait_for_steady_state   = false
-  force_new_deployment    = true
 
   network_configuration {
     assign_public_ip = true
