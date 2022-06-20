@@ -65,22 +65,25 @@ resource "aws_ecs_cluster_capacity_providers" "cluster_capacity_providers" {
 }
 
 resource "aws_ecs_service" "ecs_service" {
-  cluster             = aws_ecs_cluster.ecs_cluster.id
-  launch_type         = "FARGATE"
-  name                = var.project_name
-  desired_count       = 1
-  platform_version    = "LATEST"
-  scheduling_strategy = "REPLICA"
-  task_definition     = aws_ecs_task_definition.task_definition.arn
+  cluster                 = aws_ecs_cluster.ecs_cluster.id
+  name                    = var.project_name
+  task_definition         = aws_ecs_task_definition.task_definition.arn
+  desired_count           = 1
+  launch_type             = "FARGATE"
+  platform_version        = "LATEST"
+  scheduling_strategy     = "REPLICA"
+  enable_ecs_managed_tags = true
+  enable_execute_command  = false
+  wait_for_steady_state   = false
 
   network_configuration {
-    assign_public_ip = "true"
+    assign_public_ip = true
     security_groups  = [aws_security_group.security_group.id]
     subnets          = [aws_subnet.main.id]
   }
 
   deployment_controller {
-    type = "ECS"
+    type = "CODE_DEPLOY"
   }
 
   load_balancer {
