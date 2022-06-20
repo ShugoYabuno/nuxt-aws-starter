@@ -70,7 +70,7 @@ resource "aws_ecs_service" "ecs_service" {
   task_definition         = aws_ecs_task_definition.task_definition.arn
   desired_count           = 1
   launch_type             = "FARGATE"
-  platform_version        = "LATEST"
+  platform_version        = "1.4.0"
   scheduling_strategy     = "REPLICA"
   enable_ecs_managed_tags = true
   enable_execute_command  = false
