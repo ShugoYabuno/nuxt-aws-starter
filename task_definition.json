@@ -1,5 +1,5 @@
 {
-  "family": "nuxt-aws-starter",
+  "family": "#{codepipeline.ApplicationName}",
   "networkMode": "awsvpc",
   "executionRoleArn": "arn:aws:iam::722081103407:role/ecsTaskExecutionRole",
   "cpu": "256",
@@ -7,7 +7,7 @@
   "requiresCompatibilities": ["FARGATE"],
   "containerDefinitions": [
     {
-      "name": "nuxt-aws-starter",
+      "name": "#{codepipeline.ApplicationName}",
       "image": "<IMAGE1_NAME>",
       "essential": true,
       "portMappings": [

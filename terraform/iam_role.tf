@@ -77,16 +77,36 @@ data "aws_iam_policy_document" "codepipeline" {
   statement {
     effect = "Allow"
     actions = [
-      "CodeBuild:*",
+      "codebuild:BatchGetBuilds",
+      "codebuild:StartBuild",
     ]
     resources = [aws_codebuild_project.main.arn]
   }
   statement {
     effect = "Allow"
     actions = [
-      "CodeDeploy:*",
+      "codedeploy:CreateDeployment",
+      "codedeploy:GetApplication",
+      "codedeploy:GetApplicationRevision",
+      "codedeploy:GetDeployment",
+      "codedeploy:GetDeploymentConfig",
+      "codedeploy:RegisterApplicationRevision"
     ]
-    resources = [aws_codedeploy_app.main.arn]
+    resources = ["*"]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "ecs:*",
+    ]
+    resources = ["*"]
+  }
+  statement {
+    effect = "Allow"
+    actions = [
+      "iam:PassRole",
+    ]
+    resources = ["*"]
   }
 }
 
