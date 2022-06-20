@@ -7,7 +7,7 @@
   "requiresCompatibilities": ["FARGATE"],
   "containerDefinitions": [
     {
-      "name": "<CONTAINER_NAME>",
+      "name": "nuxt-aws-starter",
       "image": "<IMAGE1_NAME>",
       "essential": true,
       "portMappings": [
