@@ -25,24 +25,6 @@ resource "aws_codepipeline" "main" {
     }
   }
 
-  # stage {
-  #   name = "Source"
-  #   action {
-  #     name             = "Source"
-  #     category         = "Source"
-  #     owner            = "ThirdParty"
-  #     provider         = "GitHub"
-  #     version          = "1"
-  #     run_order        = 1
-  #     output_artifacts = ["source"]
-  #     configuration = {
-  #       Owner  = "ShugoYabuno"
-  #       Repo   = "nuxt-aws-starter"
-  #       Branch = "main"
-  #     }
-  #   }
-  # }
-
   stage {
     name = "Build"
     action {
@@ -65,7 +47,3 @@ resource "aws_codestarconnections_connection" "codestarconnections_connection" {
   name          = "${var.project_name}-connection"
   provider_type = "GitHub"
 }
-
-# output "aws_codestarconnections_connection_arn" {
-#   value = aws_codestarconnections_connection.aws_codestarconnections_connection.arn
-# }
