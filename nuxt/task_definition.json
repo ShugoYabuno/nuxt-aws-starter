@@ -1,0 +1,22 @@
+{
+  "family": "nuxt-aws-starter",
+  "networkMode": "awsvpc",
+  "executionRoleArn": "arn:aws:iam::722081103407:role/ecsTaskExecutionRole",
+  "cpu": "256",
+  "memory": "512",
+  "requiresCompatibilities": ["FARGATE"],
+  "containerDefinitions": [
+    {
+      "name": "nuxt-aws-starter",
+      "image": "<IMAGE1_NAME>",
+      "essential": true,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 3000,
+          "hostPort": 3000
+        }
+      ]
+    }
+  ]
+}
