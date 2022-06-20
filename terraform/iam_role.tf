@@ -81,6 +81,13 @@ data "aws_iam_policy_document" "codepipeline" {
     ]
     resources = [aws_codebuild_project.main.arn]
   }
+  statement {
+    effect = "Allow"
+    actions = [
+      "CodeDeploy:*",
+    ]
+    resources = [aws_codedeploy_app.main.arn]
+  }
 }
 
 data "aws_iam_policy_document" "codebuild" {
