@@ -39,6 +39,25 @@ resource "aws_codepipeline" "main" {
       configuration = {
         ProjectName = var.project_name
       }
+      environment_variable {
+        name  = "EXECUTION_ROLE_ARN"
+        value = "arn:aws:iam::${var.aws_account_id}:role/ecsTaskExecutionRole"
+      }
+
+      environment_variable {
+        name  = "CONTAINER_NAME"
+        value = var.project_name
+      }
+
+      environment_variable {
+        name  = "LOGGROUP_NAME"
+        value = aws_cloudwatch_log_group.ecs.name
+      }
+
+      environment_variable {
+        name  = "TASK_FAMILY"
+        value = aws_ecs_task_definition.task_definition.family
+      }
     }
   }
 
@@ -55,8 +74,7 @@ resource "aws_codepipeline" "main" {
       configuration = {
         ApplicationName                = aws_codedeploy_app.main.name
         DeploymentGroupName            = aws_codedeploy_app.main.name
-        TaskDefinitionTemplateArtifact = "source"
-        TaskDefinitionTemplatePath     = "task_definition.json"
+        TaskDefinitionTemplateArtifact = "build"
         AppSpecTemplateArtifact        = "source"
         AppSpecTemplatePath            = "appspec.yml"
         Image1ArtifactName             = "build"
