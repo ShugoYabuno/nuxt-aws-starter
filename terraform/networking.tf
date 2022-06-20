@@ -9,11 +9,15 @@ resource "aws_vpc" "main" {
   }
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 resource "aws_subnet" "main" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.0.0/20"
   map_public_ip_on_launch = true
-  availability_zone       = "ap-northeast-1a"
+  availability_zone       = data.aws_availability_zones.available.names[0]
 
   tags = {
     Name = "${var.project_name}-main"
@@ -28,7 +32,7 @@ resource "aws_vpc_ipv4_cidr_block_association" "secondary" {
 resource "aws_subnet" "secondary" {
   vpc_id            = aws_vpc_ipv4_cidr_block_association.secondary.vpc_id
   cidr_block        = "172.2.0.0/24"
-  availability_zone = "ap-northeast-1c"
+  availability_zone = data.aws_availability_zones.available.names[1]
 
   tags = {
     Name = "${var.project_name}-secondary"
