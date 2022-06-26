@@ -1,0 +1,26 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Nuxt generate
+dist
+
+# Backpack build
+build
+
+/.sass-cache
+.sass-cache
+
+# env
+.env
+
+package-lock.json
+
+/static/js/*
+
+/**/*.d.ts
