@@ -5,13 +5,21 @@
     "dev": "HOST=0.0.0.0 PORT=3000 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "HOST=0.0.0.0 PORT=3000 nuxt start"
+    "start": "HOST=0.0.0.0 PORT=3000 nuxt start",
+    "lint": "eslint --ext .js,.ts,.vue --ignore-path .eslintignore .",
+    "test": "jest -b false"
   },
   "devDependencies": {
+    "@nuxt/types": "^2.15.8",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "@types/jest": "^28.1.3",
+    "eslint": "^8.18.0",
+    "jest": "^28.1.1",
     "nuxt": "3.0.0-rc.3"
   },
   "volta": {
     "node": "16.15.1",
     "yarn": "1.22.4"
-  }
+  },
+  "license": "ISC"
 }
