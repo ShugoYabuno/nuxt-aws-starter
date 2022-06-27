@@ -10,8 +10,9 @@ module.exports = {
   },
   extends: ["@nuxtjs", "@nuxtjs/eslint-config-typescript"],
   rules: {
+    quotes: ["error", "double"],
     "no-console": "off",
-    semi: [2, "never"],
+    semi: ["error", "never"],
     "no-undef": "off",
     "comma-dangle": ["error", "always-multiline"],
     "vue/max-attributes-per-line": "off",
