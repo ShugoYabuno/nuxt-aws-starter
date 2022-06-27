@@ -4,6 +4,6 @@
   "compilerOptions": {
     "rootDir": "./",
     "baseUrl": "./",
-    "types": ["@nuxt/types", "@types/node"]
+    "types": ["@nuxt/types", "@types/node", "vitest/globals"]
   }
 }
