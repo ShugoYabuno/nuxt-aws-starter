@@ -22,6 +22,7 @@ jobs:
         with:
           node-version: ${{ env.node-version }}
           cache: yarn
+          cache-dependency-path: nuxt/yarn.lock
       - run: yarn install
       - name: lint
         run: yarn run lint
@@ -36,6 +37,7 @@ jobs:
         with:
           node-version: ${{ env.node-version }}
           cache: yarn
+          cache-dependency-path: nuxt/yarn.lock
       - run: yarn install
       - name: unit test run
         run: yarn run test
