@@ -9,10 +9,10 @@ env:
   node-version: 16.15.1
 jobs:
   cd:
-    - run: cd nuxt/
+    name: change directory
+    run: cd nuxt/
   lint:
     name: Lint
-    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -24,7 +24,6 @@ jobs:
         run: yarn run lint
   unit:
     name: Unit test
-    runs-on: self-hosted
     needs: lint
     if: success()
     steps:
