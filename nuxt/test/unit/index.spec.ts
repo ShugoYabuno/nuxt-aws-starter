@@ -7,8 +7,8 @@ describe("initial page", async () => {
     server: true,
     // test context options
   })
-  test("Display Get Started", async () => {
+  test("Display Hello World!", async () => {
     const html = await $fetch("/")
-    expect(html).toContain("Get Started")
+    expect(html).toContain("Hello World!")
   })
 })
