@@ -10,7 +10,8 @@ env:
 jobs:
   cd:
     name: change directory
-    run: cd nuxt/
+    steps:
+      - run: cd nuxt/
   lint:
     name: Lint
     steps:
