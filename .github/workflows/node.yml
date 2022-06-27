@@ -8,11 +8,13 @@ on:
       - staging
 env:
   node-version: 16.15.1
+defaults:
+  run:
+    shell: bash
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    working-directory: ./nuxt
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -25,7 +27,6 @@ jobs:
   unit:
     name: Unit test
     runs-on: ubuntu-latest
-    working-directory: ./nuxt
     needs: lint
     if: success()
     steps:
