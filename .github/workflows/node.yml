@@ -9,14 +9,10 @@ on:
 env:
   node-version: 16.15.1
 jobs:
-  cd:
-    name: change directory
-    runs-on: ubuntu-latest
-    steps:
-      - run: cd nuxt/
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    working-directory: ./nuxt
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -29,6 +25,7 @@ jobs:
   unit:
     name: Unit test
     runs-on: ubuntu-latest
+    working-directory: ./nuxt
     needs: lint
     if: success()
     steps:
