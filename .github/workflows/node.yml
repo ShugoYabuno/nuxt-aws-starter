@@ -13,9 +13,7 @@ defaults:
     shell: bash
     working-directory: ./nuxt
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
+  setup:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -24,6 +22,10 @@ jobs:
           cache: yarn
           cache-dependency-path: nuxt/yarn.lock
       - run: yarn install
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
       - name: lint
         run: yarn run lint
   unit:
@@ -32,13 +34,6 @@ jobs:
     needs: lint
     if: success()
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.node-version }}
-          cache: yarn
-          cache-dependency-path: nuxt/yarn.lock
-      - run: yarn install
       - name: unit test run
         run: yarn run test
   # e2e:
