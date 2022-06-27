@@ -7,15 +7,18 @@
     "preview": "nuxt preview",
     "start": "HOST=0.0.0.0 PORT=3000 nuxt start",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .eslintignore .",
-    "test": "jest -b false"
+    "test": "vitest"
   },
   "devDependencies": {
+    "@nuxt/test-utils-edge": "^3.0.0-rc.4-27600153.ad42023",
     "@nuxt/types": "^2.15.8",
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
-    "@types/jest": "^28.1.3",
+    "@vue/test-utils": "^2.0.0",
     "eslint": "^8.18.0",
-    "jest": "^28.1.1",
-    "nuxt": "3.0.0-rc.3"
+    "jsdom": "^20.0.0",
+    "nuxt": "3.0.0-rc.3",
+    "prettier": "2.7.1",
+    "vitest": "^0.16.0"
   },
   "volta": {
     "node": "16.15.1",
