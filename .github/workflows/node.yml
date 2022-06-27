@@ -18,8 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Initialize
-        uses: ./.github/actions/initialize
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-version }}
+          cache: yarn
+          cache-dependency-path: nuxt/yarn.lock
+      - run: yarn install
       - name: lint
         run: yarn run lint
   unit:
@@ -27,8 +31,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Initialize
-        uses: ./.github/actions/initialize
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-version }}
+          cache: yarn
+          cache-dependency-path: nuxt/yarn.lock
+      - run: yarn install
       - name: unit test run
         run: yarn run test
   # e2e:
