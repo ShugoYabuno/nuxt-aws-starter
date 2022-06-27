@@ -17,6 +17,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Initialize
         uses: ./.github/actions/initialize
       - name: lint
@@ -25,6 +26,7 @@ jobs:
     name: Unit test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Initialize
         uses: ./.github/actions/initialize
       - name: unit test run
