@@ -10,10 +10,12 @@ env:
 jobs:
   cd:
     name: change directory
+    runs-on: ubuntu-latest
     steps:
       - run: cd nuxt/
   lint:
     name: Lint
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
@@ -25,6 +27,7 @@ jobs:
         run: yarn run lint
   unit:
     name: Unit test
+    runs-on: ubuntu-latest
     needs: lint
     if: success()
     steps:
